@@ -1,11 +1,20 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/home', function () {
     return view('home');
 });
+
+Route::get('/login', function () {
+    return view('Login-register/login');
+});
+
+Route::get('/register', function () {
+    return view('Login-register/register');
+});
+
+Route::post('/register', [UserController::class, 'register']);
+Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/login', [UserController::class, 'login']);
