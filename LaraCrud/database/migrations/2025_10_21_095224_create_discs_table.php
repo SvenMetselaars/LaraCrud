@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('discs', function (Blueprint $table) {
             $table->id();
-            $table->string('Title');
+            $table->string('title');
             $table->string('artist');
-            $table->string('Price');
+            $table->string('price');
+            $table->integer('stock');
             $table->timestamps();
         });
     }

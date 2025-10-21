@@ -17,6 +17,25 @@
             @csrf
             <button class="secondary-btn">log out</button>
         </form>
+
+        <h2>add disc?</h2>
+        <form action="/add-disc" method="POST">
+            @csrf
+            <input type="text" name="title">
+            <input type="text" name="artist">
+            <input type="amount" name="price">
+            <input type="amount" name="stock">
+            <button>save</button>
+        </form>
+
+        <h2>all discs</h2>
+        @foreach($discs as $disc)
+            <h3>{{$disc['title']}}</h3>
+            <h3>{{$disc['artist']}}</h3>
+            <h3>{{$disc['price']}}</h3>
+            <h3>{{$disc['stock']}}</h3>
+        @endforeach
+
         @else
         <h2>Register</h2>
         <form action="/register" method="POST">
