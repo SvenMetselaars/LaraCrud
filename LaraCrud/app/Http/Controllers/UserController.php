@@ -23,13 +23,13 @@ class UserController extends Controller
             $request->session()->regenerate();
         }
 
-        return redirect('/register');
+        return redirect('/');
     }
 
     public function logout()
     {
         auth::logout();
-        return redirect('/register');
+        return redirect('/');
     }
     
     public function register(Request $request)
@@ -41,9 +41,13 @@ class UserController extends Controller
         ]);
 
         $incomingFields['password'] = bcrypt($incomingFields['password']);
+
+        // Add admin field (always false)
+        $incomingFields['admin'] = false;
+
         $User = User::create($incomingFields);
         Auth::login($User);
-        return redirect('/register');
+        return redirect('/');
             
     }
 }

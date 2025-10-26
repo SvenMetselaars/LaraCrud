@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Disc extends Model
 {
-    protected $fillable = ['title', 'artist', 'price', 'stock'];
+    protected $fillable = ['title', 'director', 'summary', 'price', 'stock'];
 }

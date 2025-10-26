@@ -66,6 +66,12 @@
     box-sizing: border-box;
 }
 
+.row a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
 body {
     font-family: var(--font-family);
     background-color: var(--background-dark);
@@ -101,19 +107,30 @@ body {
     text-decoration: none;
 }
 
+.nav-links form button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
+    padding: 0;
+}
+
 .nav-links {
     display: flex;
     list-style: none;
     gap: var(--nav-gap);
 }
 
-.nav-links a {
+.nav-links a,
+.nav-links form button {
     color: var(--text-primary);
     text-decoration: none;
     transition: color var(--transition-fast);
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links form button:hover {
     color: var(--primary-red);
 }
 
@@ -149,7 +166,7 @@ body {
 .hero-content {
     max-width: var(--hero-content-max-width);
     z-index: var(--z-index-hero);
-    padding-top: 20%;
+    padding-top: 35%;
 }
 
 .hero-title {
@@ -220,13 +237,11 @@ body {
 }
 
 .row {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: var(--row-gap);
-    overflow-x: auto;
     padding-top: var(--row-gap);
     padding-bottom: var(--row-gap);
-    scrollbar-width: thin;
-    scrollbar-color: var(--scrollbar-color) transparent;
 }
 
 .row::-webkit-scrollbar {
@@ -355,6 +370,14 @@ input {
 
 input::placeholder {
   color: var(--text-secondary);
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--row-gap);
+    padding-top: var(--row-gap);
+    padding-bottom: var(--row-gap);
 }
 
 /* Responsive */

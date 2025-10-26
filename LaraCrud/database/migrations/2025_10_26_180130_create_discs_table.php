@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('discs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('artist');
+            $table->string('director');
+            $table->string('summary');
             $table->string('price');
             $table->integer('stock');
             $table->timestamps();
