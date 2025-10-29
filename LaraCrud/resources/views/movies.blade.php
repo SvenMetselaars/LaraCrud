@@ -41,20 +41,23 @@
     <div class="content">
         <section class="section">
             <h2 class="section-title">all movies</h2>
-            <div class="row">
-                @foreach($discs as $disc)
-                    <a href="/view/{{$disc->id}}">
-                        <div class="card">
-                            <div class="card-image">
-                                <div class="card-placeholder">{{$disc['title']}}</div>
-                                <div class="card-overlay">
-                                    <div class="card-title">{{$disc['title']}}</div>
+            @foreach($categories as $category)
+                <h3>{{ $category->categories }}</h3>
+                <div class="row">
+                    @foreach ($category->movies as $movie)
+                        <a href="/view/{{ $movie->id }}">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="{{ asset('storage/' . $movie->img) }}" alt="{{ $movie->title }}" width="100%"/>
+                                    <div class="card-overlay">
+                                        <div class="card-title">{{ $movie->title }}</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                @endforeach
-            </div>
+                        </a>
+                    @endforeach
+                </div>
+            @endforeach
         </section>
     </div>
 

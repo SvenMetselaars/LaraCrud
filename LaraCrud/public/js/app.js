@@ -14,7 +14,7 @@ const videos = [
 const randomVideo = videos[Math.floor(Math.random() * videos.length)];
 
 const heroVideo = document.querySelector(".hero-video");
-heroVideo.src = randomVideo;
+if (!heroVideo.getAttribute("src")) heroVideo.src = randomVideo;
 
 // Play only on hovers
 const heroSection = document.querySelector(".hero");
@@ -37,45 +37,4 @@ heroVideo.addEventListener("ended", () => {
             heroVideo.play();
         }, { once: true });
     }, 5000); // 3s delay
-});
-
-//image stuff
-
-const trendingMovies = [
-    { img: "imgs/pexels-aarifh-33687897.webp" },
-    { img: "imgs/pexels-ahmet-kurt-2147988540-33514898.webp" },
-    { img: "imgs/pexels-berkan-i-yili-2154679279-33866528.webp" },
-    { img: "imgs/pexels-eceebrarr-33646740.webp" },
-    { img: "imgs/pexels-cari-cinnamon-tea-2155247743-33673041.webp" }
-];
-
-// A function to inject posters into the right section
-function loadPosters(sectionSelector, items) {
-    const section = document.querySelector(sectionSelector);
-    const cards = section.querySelectorAll(".card");
-    
-    cards.forEach((card) => {
-        // Generate random number between 0 and 4
-        const randomIndex = Math.floor(Math.random() * items.length);
-        
-        if (items[randomIndex]) {
-            const placeholder = card.querySelector(".card-placeholder");
-
-            // Replace placeholder text with image
-            placeholder.innerHTML = `<img src="${items[randomIndex].img}" />`;
-        }
-    });
-}
-
-// Call function for each section
-loadPosters(".section:nth-of-type(1)", trendingMovies);
-
-// Header scroll effect
-window.addEventListener('scroll', function () {
-    const header = document.querySelector('.header');
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
 });

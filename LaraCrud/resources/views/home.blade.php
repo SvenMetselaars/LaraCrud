@@ -14,7 +14,7 @@
             <a href="#" class="logo">PATFLIX</a>
             <ul class="nav-links">
                 <li><a href="#">Home</a></li>
-                <li><a href="/movies">Movies</a></li>
+                <li><a href="/movies">movies</a></li>
                 <li>
                     <form action="/logout" method="POST">
                         @csrf
@@ -40,17 +40,17 @@
             <h2 class="section-title">Trending Now</h2>
             <div class="row">
                 <?php $i = 0; ?>
-                @foreach($discs as $disc)
+                @foreach($movies as $movie)
                     <?php
                     if($i < 10) 
                     { 
                         ?>
-                        <a href="/view/{{$disc->id}}">
+                        <a href="/view/{{ $movie->id }}">
                             <div class="card">
                                 <div class="card-image">
-                                    <div class="card-placeholder">{{$disc['title']}}</div>
+                                    <img src="{{ asset('storage/' . $movie->img) }}" alt="{{ $movie->title }}" width="100%"/>
                                     <div class="card-overlay">
-                                        <div class="card-title">{{$disc['title']}}</div>
+                                        <div class="card-title">{{ $movie->title }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -65,14 +65,20 @@
         </section>
     </div>
         @if (auth()->user()->admin)            
-            <h2>add disc?</h2>
-            <form action="/add-disc" method="POST">
+            <h2>add Movie?</h2>
+            <form action="/add-movie" method="POST">
                 @csrf
                 <input type="text" name="title">
                 <input type="text" name="director">
                 <input type="textarea" name="summary">
-                <input type="amount" name="price">
-                <input type="amount" name="stock">
+                <input type="number" name="price">
+                <select name="categories[]" multiple>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->categories }}</option>
+                    @endforeach
+                </select>
+                <input type="text" name="img">
+                <input type="text" name="vid">
                 <button>save</button>
             </form>
         @endif

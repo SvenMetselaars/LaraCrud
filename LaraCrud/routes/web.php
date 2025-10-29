@@ -1,31 +1,33 @@
 <?php
 
-use App\Http\Controllers\DiscController;
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\UserController;
-use App\Models\Disc;
+use App\Models\Movie;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $Discs = Disc::all();
-    return view('home', ['discs' => $Discs]);
+    $movies = Movie::all();
+    $categories = Category::all();
+    return view('home', ['movies' => $movies, 'categories' => $categories]);
 });
 
 Route::get('/register', function () {
-    $Discs = Disc::all();
-    return view('/register', ['discs' => $Discs]);
+    return view('/register');
 });
 
 Route::get('/movies', function () {
-    $Discs = Disc::all();
-    return view('/movies', ['discs' => $Discs]);
+    $movies = Movie::all();
+    $categories = Category::all();
+    return view('/movies', ['movies' => $movies, 'categories' => $categories]);
 });
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/logout', [UserController::class, 'logout']);
 Route::post('/login', [UserController::class, 'login']);
 
-// disc related routes
-Route::post('/add-disc', [DiscController::class, 'AddDisc']);
-Route::get('/view/{disc}', [DiscController::class, 'showViewScreen']);
-Route::put('/edit-disc/{disc}', [DiscController::class, 'updateDisc']);
-Route::delete('/delete-disc/{disc}', [DiscController::class, 'deleteDisc']);
+// Movie related routes
+Route::post('/add-movie', [MovieController::class, 'AddMovie']);
+Route::get('/view/{movie}', [MovieController::class, 'showViewScreen']);
+Route::put('/edit-movie/{movie}', [MovieController::class, 'updateMovie']);
+Route::delete('/delete-movie/{movie}', [MovieController::class, 'deleteMovie']);
