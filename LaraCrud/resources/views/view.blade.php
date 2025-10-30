@@ -34,7 +34,7 @@
             <!-- Edit Section only for Admin -->
             @if (auth()->user()->admin)
                 <div class="admin-actions">
-                    <form action="/delete-Movie/{{$Movie->id}}" method="POST" style="display: inline;">
+                    <form action="/delete-movie/{{$Movie->id}}" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-delete" onclick="return confirm('Are you sure you want to delete this Movie?')">🗑 Delete</button>
@@ -54,21 +54,34 @@
             <h2 class="section-title">More Information</h2>
             <div class="info-grid">
                 @if (auth()->user()->admin)
-                    <h1>Edit Movie</h1>
-
                     <!-- Admin Edit Form -->
-                    <form action="/edit-Movie/{{$Movie->id}}" method="POST">
-                        @csrf
-                        @method('PUT')
+                    <div class="admin-form-container">
+                        <h2>Edit Movie</h2>
+                        <form action="/edit-movie/{{$Movie->id}}" method="POST">
+                            @csrf
+                            @method('PUT')
 
-                        <input type="text" name="title" value="{{$Movie->title}}">
-                        <input type="text" name="director" value="{{$Movie->director}}">
-                        <input type="text" name="summary" value="{{$Movie->summary}}">
-                        <input type="text" name="price" value="{{$Movie->price}}">
-                        <input type="text" name="stock" value="{{$Movie->stock}}">
+                            <input type="text" name="title" value="{{$Movie->title}}" placeholder="Movie Title" required>
+                            <input type="text" name="director" value="{{$Movie->director}}" placeholder="Director" required>
+                            <textarea name="summary" placeholder="Movie Summary" rows="4" required>{{$Movie->summary}}</textarea>
+                            <input type="number" name="price" value="{{$Movie->price}}" placeholder="Price" step="0.01" required>
+                            
+                            <div class="category-group">
+                                @foreach($categories as $category)
+                                    <div class="category-item">
+                                        <input type="checkbox" name="categories[]" value="{{ $category->id }}" id="cat-{{ $category->id }}"
+                                            {{ $Movie->categories->contains($category->id) ? 'checked' : '' }}>
+                                        <label for="cat-{{ $category->id }}">{{ $category->categories }}</label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        
+                            <input type="text" name="img" value="{{$Movie->img}}" placeholder="Image URL" required>
+                            <input type="text" name="vid" value="{{$Movie->vid}}" placeholder="Video URL" required>
 
-                        <button>Save changes</button>
-                    </form>
+                            <button type="submit" class="btn btn-play">Save Changes</button>
+                        </form>
+                    </div>
                 @else
                     <div class="info-grid">
                         <div class="info-item">
@@ -80,8 +93,10 @@
                             <p>${{$Movie->price}}</p>
                         </div>
                         <div class="info-item">
-                            <h3>Availability</h3>
-                            <p>{{$Movie->stock}} copies in stock</p>
+                            <h3>Category</h3>
+                            @foreach($Movie->categories as $category)                               
+                                <p>{{ $category->categories }}</p>                            
+                            @endforeach
                         </div>
                         <div class="info-item">
                             <h3>Summary</h3>
@@ -94,14 +109,21 @@
     </div>
 
     @else
-        <h2>Login</h2>
-        <form action="/login" method="POST">
-            @csrf
-            <input name="loginname" type="text" placeholder="name">
-            <input name="loginpassword" type="password" placeholder="password">
-            <button>Log in</button>
-            <p>Don’t have an account yet? <a href="/register">Register here</a></p>
-        </form>
+        <!-- Login Form (when not authenticated) -->
+        <div class="auth-wrapper">
+            <div class="auth-container">
+                <h2>Sign In</h2>
+                <form action="/login" method="POST">
+                    @csrf
+                    <input name="loginname" type="text" placeholder="Username" required>
+                    <input name="loginpassword" type="password" placeholder="Password" required>
+                    <button type="submit" class="btn btn-play">Log In</button>
+                </form>
+                <p class="form-link">
+                    Don't have an account yet? <a href="/register">Register here</a>
+                </p>
+            </div>
+        </div>
     @endauth
     <!-- <script src="js/app.js"></script> -->
 </body>

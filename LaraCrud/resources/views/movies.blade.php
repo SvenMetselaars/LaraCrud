@@ -27,12 +27,8 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">Unlimited movies, and more.</h1>
+            <h1 class="hero-title">Unlimited movies.</h1>
             <p class="hero-description">Watch anywhere, anytime. Ready to watch?</p>
-            <div class="hero-buttons">
-                <a href="#" class="btn btn-play">▶ Play</a>
-                <a href="#" class="btn btn-info">ℹ More Info</a>
-            </div>
         </div>
         <video class="hero-video" muted preload="auto" poster="fallback.jpg"></video>
     </section>
@@ -63,13 +59,22 @@
 
     @else
 
-    <h2>login</h2>
-    <form action="/login" method="POST">
-        @csrf
-        <input name="loginname" type="text" placeholder="name">
-        <input name="loginpassword" type="password" placeholder="password">
-        <button>log in</button>
-    </form>  
+    <!-- Login Form (when not authenticated) -->
+    <div class="auth-wrapper">
+        <div class="auth-container">
+            <h2>Sign In</h2>
+            <form action="/login" method="POST">
+                @csrf
+                <input name="loginname" type="text" placeholder="Username" required>
+                <input name="loginpassword" type="password" placeholder="Password" required>
+                <button type="submit" class="btn btn-play">Log In</button>
+            </form>
+            <p class="form-link">
+                Don't have an account yet? <a href="/register">Register here</a>
+            </p>
+        </div>
+    </div>
+
     @endauth
     <script src="js/app.js"></script>
 </body>

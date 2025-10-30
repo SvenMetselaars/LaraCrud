@@ -163,9 +163,9 @@ body {
 }
 
 .hero-content {
-    max-width: var(--hero-content-max-width);
+    max-width: 18%;
     z-index: var(--z-index-hero);
-    padding-top: 35%;
+    padding-top: 33%;
 }
 
 .hero-title {
@@ -312,89 +312,124 @@ body {
     color: var(--text-secondary);
 }
 
-/* register */
+/* Auth & Forms */
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
 
-/* Secondary button */
+.auth-container {
+    background: var(--overlay-dark);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    width: 100%;
+    max-width: 400px;
+    box-shadow: var(--box-shadow-hover);
+}
+
+.admin-form-container {
+    background: var(--overlay-dark);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    width: 100%;
+    max-width: 600px;
+    margin: 40px auto;
+    box-shadow: var(--box-shadow-hover);
+}
+
+h2 {
+    font-size: var(--section-title-size);
+    margin-bottom: var(--section-title-margin);
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input,
+textarea,
+select {
+    padding: 12px;
+    border: none;
+    border-radius: var(--border-radius);
+    background: var(--card-gradient-start);
+    color: var(--text-primary);
+    font-size: var(--button-size);
+    font-family: var(--font-family);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+select {
+    min-height: 100px;
+}
+
+select option {
+    background: var(--card-gradient-start);
+    color: var(--text-primary);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-secondary);
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: var(--button-padding);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: var(--button-size);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
 .secondary-btn {
-  background: var(--button-secondary);
-  color: var(--text-primary);
+    background: var(--button-secondary);
+    color: var(--text-primary);
+    width: 100%;
+    padding: var(--button-padding);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: var(--button-size);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all var(--transition-fast);
 }
 
 .secondary-btn:hover {
-  background: var(--button-secondary-hover);
+    background: var(--button-secondary-hover);
 }
 
-/* Logged in text */
+.form-link {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--text-secondary);
+}
+
+.form-link a {
+    color: var(--primary-red);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.form-link a:hover {
+    color: var(--white-opacity-hover);
+}
+
 .logged-in {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 1.1rem;
-  color: var(--white-opacity-hover);
-}
-
-/* Auth container */
-.auth-container {
-  background: var(--overlay-dark);
-  padding: 40px;
-  border-radius: var(--border-radius);
-  width: 100%;
-  max-width: 400px;
-  box-shadow: var(--box-shadow-hover);
-}
-
-/* Headings */
-h2 {
-  font-size: var(--section-title-size);
-  margin-bottom: var(--section-title-margin);
-  text-align: center;
-}
-
-/* Forms */
-form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--row-gap);
-  margin-bottom: var(--section-margin-bottom);
-}
-
-/* Inputs */
-input {
-  padding: 12px;
-  border: none;
-  border-radius: var(--border-radius);
-  background: var(--card-gradient-start);
-  color: var(--text-primary);
-  font-size: var(--button-size);
-}
-
-input::placeholder {
-  color: var(--text-secondary);
-}
-
-.row {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: var(--row-gap);
-    padding-top: var(--row-gap);
-    padding-bottom: var(--row-gap);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: var(--hero-title-mobile);
-    }
-
-    .hero-description {
-        font-size: var(--hero-description-mobile);
-    }
-
-    .nav-links {
-        display: none;
-    }
-
-    .card {
-        min-width: var(--card-width-mobile);
-        height: var(--card-height-mobile);
-    }
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: var(--white-opacity-hover);
 }

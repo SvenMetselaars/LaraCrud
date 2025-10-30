@@ -6,7 +6,7 @@
     <link href="css/style.css" rel="stylesheet"></link>
 </head>
 <body>
-    @Auth
+    @auth
 
     <!-- Header -->
     <header class="header">
@@ -63,39 +63,60 @@
                 
             </div>
         </section>
-    </div>
-        @if (auth()->user()->admin)            
-            <h2>add Movie?</h2>
-            <form action="/add-movie" method="POST">
-                @csrf
-                <input type="text" name="title">
-                <input type="text" name="director">
-                <input type="textarea" name="summary">
-                <input type="number" name="price">
-                <select name="categories[]" multiple>
-                    @foreach($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->categories }}</option>
-                    @endforeach
-                </select>
-                <input type="text" name="img">
-                <input type="text" name="vid">
-                <button>save</button>
-            </form>
+
+        @if (auth()->user()->admin)
+        <section class="section">
+            <div class="admin-form-container">
+                <h2>Add Movie</h2>
+                <form action="/add-movie" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="text" name="title" placeholder="Movie Title" required>
+                    <input type="text" name="director" placeholder="Director" required>
+                    <textarea name="summary" placeholder="Movie Summary" rows="4" required></textarea>
+                    <input type="number" name="price" placeholder="Price" step="0.01" required>
+                    
+                    <div class="category-group">
+                        @foreach($categories as $category)
+                            <div class="category-item">
+                                <input type="checkbox" name="categories[]" value="{{ $category->id }}" id="cat-{{ $category->id }}">
+                                <label for="cat-{{ $category->id }}">{{ $category->categories }}</label>
+                            </div>
+                        @endforeach
+                    </div>
+                    
+                    <input type="text" name="img" placeholder="Image URL" required>
+                    <input type="text" name="vid" placeholder="Video URL" required>
+                    <button type="submit" class="btn btn-play">Save Movie</button>
+                </form>
+                
+                <form action="/seed-movies" method="GET">
+                    <button type="submit" class="secondary-btn">Generate Fake Movies</button>
+                </form>
+            </div>
+        </section>
         @endif
+    </div>
 
     @else
 
-    <h2>login</h2>
-    <form action="/login" method="POST">
-        @csrf
-        <input name="loginname" type="text" placeholder="name">
-        <input name="loginpassword" type="password" placeholder="password">
-        <button>log in</button>
-        <p>dont have a account yet? <a href="/register">register here</a></p>
-    </form>  
+    <!-- Login Form (when not authenticated) -->
+    <div class="auth-wrapper">
+        <div class="auth-container">
+            <h2>Sign In</h2>
+            <form action="/login" method="POST">
+                @csrf
+                <input name="loginname" type="text" placeholder="Username" required>
+                <input name="loginpassword" type="password" placeholder="Password" required>
+                <button type="submit" class="btn btn-play">Log In</button>
+            </form>
+            <p class="form-link">
+                Don't have an account yet? <a href="/register">Register here</a>
+            </p>
+        </div>
+    </div>
+
     @endauth
 
     <script src="js/app.js"></script>
 </body>
 </html>
-

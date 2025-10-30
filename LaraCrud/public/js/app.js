@@ -1,13 +1,13 @@
 // List of your MP4 files
 const videos = [
-    "/videos/11960717-uhd_3840_2160_25fps.mp4",
-    "/videos/14259996_1920_1080_30fps.mp4",
-    "/videos/14294696_3840_2160_24fps.mp4",
-    "/videos/14299891_3840_2160_30fps.mp4",
-    "/videos/15459485-uhd_3840_2160_60fps.mp4",
-    "/videos/14183086_2562_1440_25fps.mp4",
-    "/videos/12554614-uhd_3840_2160_25fps.mp4",
-    "/videos/14000125_3840_2160_60fps.mp4"
+    "/storage/1.mp4",
+    "/storage/2.mp4",
+    "/storage/3.mp4",
+    "/storage/4.mp4",
+    "/storage/5.mp4",
+    "/storage/6.mp4",
+    "/storage/7.mp4",
+    "/storage/8.mp4"
 ];
 
 // Pick a random one
